@@ -1,4 +1,4 @@
-import type { RuleCategory, InitialQuizQuestions } from '../types';
+import type { RuleCategory, InitialQuizQuestions } from '../types.ts';
 
 export const initialQuizQuestions: InitialQuizQuestions = {
   easy: [

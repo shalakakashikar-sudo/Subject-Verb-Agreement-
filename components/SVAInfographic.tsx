@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import type { Rule, QuizQuestion, Difficulty } from '../types';
-import { ruleCategories, initialQuizQuestions } from '../data/rules';
-import { StarIcon, CheckCircleIcon, XCircleIcon, AwardIcon, ChevronLeftIcon, ChevronRightIcon } from './icons';
-import Mascot from './Mascot';
-import * as Infographics from './RuleInfographics';
+import type { Rule, QuizQuestion, Difficulty } from '../types.ts';
+import { ruleCategories, initialQuizQuestions } from '../data/rules.ts';
+import { StarIcon, CheckCircleIcon, XCircleIcon, AwardIcon, ChevronLeftIcon, ChevronRightIcon } from './icons.tsx';
+import Mascot from './Mascot.tsx';
+import * as Infographics from './RuleInfographics.tsx';
 
 const InfoMap: Record<number, React.FC> = {
     1: Infographics.Rule1Infographic,

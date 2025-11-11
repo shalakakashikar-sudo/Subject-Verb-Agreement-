@@ -1,6 +1,6 @@
 
 import React from 'react';
-import SVAInfographic from './components/SVAInfographic';
+import SVAInfographic from './components/SVAInfographic.tsx';
 
 const App: React.FC = () => {
   return (
