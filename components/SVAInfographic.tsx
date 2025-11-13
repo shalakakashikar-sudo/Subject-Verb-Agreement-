@@ -220,7 +220,7 @@ const SVAInfographic: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
-              <Mascot expression="excited" />
+              <Mascot expression="happy" />
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-4 font-poppins">
               Subject-Verb Agreement Master Guide

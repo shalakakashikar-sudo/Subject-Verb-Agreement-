@@ -15,6 +15,40 @@
       .font-poppins {
         font-family: 'Poppins', sans-serif;
       }
+      @keyframes mascot-bob {
+        0%, 100% {
+          transform: translateY(0) scale(1, 1) rotate(-1deg);
+        }
+        40% {
+          transform: translateY(-14px) scale(0.95, 1.05) rotate(1deg); /* Stretch at top */
+        }
+        60% {
+          transform: translateY(0) scale(1, 1) rotate(-1deg);
+        }
+        70% {
+          transform: translateY(4px) scale(1.1, 0.9) rotate(-1deg); /* Squash on land */
+        }
+        80% {
+          transform: translateY(0) scale(1, 1) rotate(-1deg);
+        }
+        90% {
+          transform: translateY(-4px) scale(0.98, 1.02) rotate(1deg); /* Small settle bounce */
+        }
+      }
+
+      .mascot-bob-animation {
+        animation: mascot-bob 3s ease-in-out infinite;
+      }
+      
+      @keyframes mascot-tickle {
+        0%, 100% { transform: rotate(0deg); }
+        20%, 60% { transform: rotate(-5deg) translateX(-3px); }
+        40%, 80% { transform: rotate(5deg) translateX(3px); }
+      }
+
+      .mascot-tickle-animation {
+        animation: mascot-tickle 0.4s ease-in-out;
+      }
     </style>
   <script type="importmap">
 {
