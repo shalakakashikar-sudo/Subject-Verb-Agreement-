@@ -1,35 +1,9 @@
 import React, { useState } from 'react';
 import type { Rule, QuizQuestion, Difficulty } from '../types.ts';
-import { ruleCategories, initialQuizQuestions } from '../data/rules.ts';
+import { ruleCategories, initialQuizQuestions, ruleQuizzes } from '../data/rules.ts';
 import { StarIcon, CheckCircleIcon, XCircleIcon, AwardIcon, ChevronLeftIcon, ChevronRightIcon } from './icons.tsx';
 import Mascot from './Mascot.tsx';
-import * as Infographics from './RuleInfographics.tsx';
-
-const InfoMap: Record<number, React.FC> = {
-    1: Infographics.Rule1Infographic,
-    2: Infographics.Rule2Infographic,
-    3: Infographics.Rule3Infographic,
-    4: Infographics.Rule4Infographic,
-    5: Infographics.Rule5Infographic,
-    6: Infographics.Rule6Infographic,
-    7: Infographics.Rule7Infographic,
-    8: Infographics.Rule8Infographic,
-    9: Infographics.Rule9Infographic,
-    10: Infographics.Rule10Infographic,
-    11: Infographics.Rule11Infographic,
-    12: Infographics.Rule12Infographic,
-    13: Infographics.Rule13Infographic,
-    14: Infographics.Rule14Infographic,
-    15: Infographics.Rule15Infographic,
-    16: Infographics.Rule16Infographic,
-    17: Infographics.Rule17Infographic,
-    18: Infographics.Rule18Infographic,
-    19: Infographics.Rule19Infographic,
-    20: Infographics.Rule20Infographic,
-    21: Infographics.Rule21Infographic,
-    22: Infographics.Rule22Infographic,
-};
-
+import { InfoMap } from './infographics/index.ts';
 
 const FormulaDisplay: React.FC<{ formula: string; baseTextSize?: string }> = ({
   formula,
@@ -312,6 +286,7 @@ const SVAInfographic: React.FC = () => {
   }
   
   const RuleInfographicComponent = InfoMap[selectedRule.id];
+  const ruleQuizQuestions = ruleQuizzes[selectedRule.id];
 
   return (
     <div className="min-h-screen p-4 md:p-8">
@@ -403,7 +378,7 @@ const SVAInfographic: React.FC = () => {
             </div>
           </div>
           
-          {selectedRule.quiz && selectedRule.quiz.length > 0 && (
+          {ruleQuizQuestions && ruleQuizQuestions.length > 0 && (
             <div className="mt-8 bg-amber-50 rounded-xl p-6 border-2 border-amber-200">
               <div className="flex items-center gap-3 mb-3">
                 <AwardIcon className="text-amber-600" size={24} />
@@ -412,23 +387,23 @@ const SVAInfographic: React.FC = () => {
               <p className="text-amber-700 mb-4">Check your understanding of <span className="font-bold">{selectedRule.name}</span> by choosing a difficulty level.</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => handleQuizStart(selectedRule.quiz?.filter(q => q.difficulty === 'easy') || [])}
+                  onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'easy'))}
                   className="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
-                  disabled={!selectedRule.quiz?.some(q => q.difficulty === 'easy')}
+                  disabled={!ruleQuizQuestions.some(q => q.difficulty === 'easy')}
                 >
                   Easy 😊
                 </button>
                 <button
-                  onClick={() => handleQuizStart(selectedRule.quiz?.filter(q => q.difficulty === 'medium') || [])}
+                  onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'medium'))}
                   className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
-                  disabled={!selectedRule.quiz?.some(q => q.difficulty === 'medium')}
+                  disabled={!ruleQuizQuestions.some(q => q.difficulty === 'medium')}
                 >
                   Medium 🤔
                 </button>
                 <button
-                  onClick={() => handleQuizStart(selectedRule.quiz?.filter(q => q.difficulty === 'hard') || [])}
+                  onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'hard'))}
                   className="flex-1 py-3 bg-gradient-to-r from-rose-500 to-red-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
-                  disabled={!selectedRule.quiz?.some(q => q.difficulty === 'hard')}
+                  disabled={!ruleQuizQuestions.some(q => q.difficulty === 'hard')}
                 >
                   Hard 🔥
                 </button>
