@@ -27,7 +27,7 @@ export interface Rule {
 
 export interface RuleCategory {
   title: string;
-  color: string;
+  borderColor: string;
   icon: string;
   rules: Rule[];
 }

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import type { Rule, QuizQuestion, Difficulty } from '../types.ts';
 import { ruleCategories, initialQuizQuestions, ruleQuizzes } from '../data/rules.ts';
@@ -45,6 +46,7 @@ const SVAInfographic: React.FC = () => {
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [celebrateMascot, setCelebrateMascot] = useState(false);
 
   const handleRuleSelect = (rule: Rule | null) => {
     setSelectedRule(rule);
@@ -59,6 +61,7 @@ const SVAInfographic: React.FC = () => {
     setScore(0);
     setAnswered(false);
     setSelectedAnswer(null);
+    setCelebrateMascot(false);
   };
 
   const handleAnswer = (index: number) => {
@@ -71,6 +74,7 @@ const SVAInfographic: React.FC = () => {
     
     if (index === currentQ.correct) {
       setScore(score + 1);
+      setCelebrateMascot(true);
     }
   };
 
@@ -81,6 +85,7 @@ const SVAInfographic: React.FC = () => {
       setCurrentQuestion(currentQuestion + 1);
       setAnswered(false);
       setSelectedAnswer(null);
+      setCelebrateMascot(false);
     } else {
       setQuizMode(false);
     }
@@ -105,6 +110,7 @@ const SVAInfographic: React.FC = () => {
     }
     const isCorrect = selectedAnswer === question.correct;
     const mascotExpression = !answered ? 'thinking' : isCorrect ? 'happy' : 'excited';
+    const progress = ((currentQuestion + 1) / questions.length) * 100;
 
     return (
       <div className="min-h-screen p-4 md:p-8 bg-slate-50/50">
@@ -116,7 +122,7 @@ const SVAInfographic: React.FC = () => {
             >
               <ChevronLeftIcon />
             </button>
-            <Mascot expression={mascotExpression} />
+            <Mascot expression={mascotExpression} isCelebrating={isCorrect && celebrateMascot} />
             <div className="text-right">
               <div className="text-sm text-gray-600">Question {currentQuestion + 1}/{questions.length}</div>
               <div className="text-lg font-bold text-violet-600 font-poppins">Score: {score}</div>
@@ -124,6 +130,13 @@ const SVAInfographic: React.FC = () => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+             <div className="w-full bg-slate-200 rounded-full h-2.5 mb-6">
+                <div 
+                    className="bg-gradient-to-r from-violet-500 to-purple-500 h-2.5 rounded-full transition-all duration-500 ease-out" 
+                    style={{ width: `${progress}%` }}
+                ></div>
+            </div>
+
             <div className="mb-6">
               <div className="inline-block px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-sm mb-4 font-semibold">
                 {question.difficulty.toUpperCase()}
@@ -202,14 +215,42 @@ const SVAInfographic: React.FC = () => {
             <p className="text-lg md:text-xl text-gray-600 mb-2">
               Your Complete Reference for Perfect Grammar
             </p>
-            <p className="text-sm text-gray-500 italic">
+            <p className="text-sm text-gray-600 italic">
               Created by Ms. Shalaka Kashikar
             </p>
           </div>
 
+          <div className="mb-12 bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-xl border-t-4 border-violet-400">
+            <div className="flex items-center gap-3 mb-4">
+              <AwardIcon className="text-amber-500" size={32} />
+              <h3 className="text-2xl font-bold text-gray-800 font-poppins">Mastery Challenge!</h3>
+            </div>
+            <p className="text-gray-600 mb-4">Ready to test your overall knowledge? Choose a difficulty level to start a quiz with questions from all rules.</p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => handleQuizStart(initialQuizQuestions.easy)}
+                className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:-translate-y-0.5 transform"
+              >
+                Easy 😊
+              </button>
+              <button
+                onClick={() => handleQuizStart(initialQuizQuestions.medium)}
+                className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white hover:-translate-y-0.5 transform"
+              >
+                Medium 🤔
+              </button>
+              <button
+                onClick={() => handleQuizStart(initialQuizQuestions.hard)}
+                className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white hover:-translate-y-0.5 transform"
+              >
+                Hard 🔥
+              </button>
+            </div>
+          </div>
+
           {ruleCategories.map((category, catIndex) => (
             <div key={catIndex} className="mb-8">
-              <div className={`${category.color} border-2 rounded-2xl p-6 shadow-lg`}>
+              <div className={`bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-t-4 ${category.borderColor}`}>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-4xl">{category.icon}</span>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-800 font-poppins">{category.title}</h2>
@@ -227,56 +268,28 @@ const SVAInfographic: React.FC = () => {
                           <div className="w-8 h-8 bg-gradient-to-br from-violet-600 to-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
                             {rule.id}
                           </div>
-                          <h3 className="font-bold text-base text-gray-800 font-poppins">{rule.name}</h3>
+                          <h3 className="font-bold text-lg text-gray-800 font-poppins">{rule.name}</h3>
                         </div>
                       </div>
                       <div className="bg-slate-50 rounded-lg p-3 mb-3 border border-slate-200">
                         <FormulaDisplay formula={rule.formula} />
                       </div>
-                      <p className="text-sm text-gray-600 line-clamp-2">{rule.explanation}</p>
+                      <p className="text-base text-gray-600 leading-relaxed mt-2">{rule.explanation}</p>
                     </button>
                   ))}
                 </div>
               </div>
             </div>
           ))}
-
-          <div className="mt-12 bg-white rounded-2xl p-6 shadow-xl border-2 border-violet-200">
-            <div className="flex items-center gap-3 mb-4">
-              <AwardIcon className="text-amber-500" size={32} />
-              <h3 className="text-2xl font-bold text-gray-800 font-poppins">Final Mixed Quiz!</h3>
-            </div>
-            <p className="text-gray-600 mb-4">Ready to test your overall knowledge? Choose a difficulty level to start a quiz with questions from all rules.</p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => handleQuizStart(initialQuizQuestions.easy)}
-                className="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md"
-              >
-                Easy 😊
-              </button>
-              <button
-                onClick={() => handleQuizStart(initialQuizQuestions.medium)}
-                className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md"
-              >
-                Medium 🤔
-              </button>
-              <button
-                onClick={() => handleQuizStart(initialQuizQuestions.hard)}
-                className="flex-1 py-3 bg-gradient-to-r from-rose-500 to-red-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md"
-              >
-                Hard 🔥
-              </button>
-            </div>
-          </div>
-
-          <div className="text-center mt-12 p-6 bg-white rounded-2xl shadow-lg">
+          
+          <div className="text-center mt-12 p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg">
             <div className="flex justify-center mb-4">
               <Mascot expression="happy" />
             </div>
             <p className="text-gray-600 text-lg">
               Master these 22 comprehensive rules and ace your grammar! 🎯
             </p>
-            <p className="text-sm text-gray-500 mt-4">
+            <p className="text-sm text-gray-600 mt-4">
               Crafted with ❤️ by Ms. Shalaka Kashikar
             </p>
           </div>
@@ -290,7 +303,7 @@ const SVAInfographic: React.FC = () => {
 
   return (
     <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto animate-slide-in">
         <button
           onClick={() => handleRuleSelect(null)}
           className="mb-6 px-4 py-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all font-bold text-violet-600 flex items-center gap-2 group"
@@ -388,21 +401,21 @@ const SVAInfographic: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'easy'))}
-                  className="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+                  className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:-translate-y-0.5 transform disabled:border-gray-300 disabled:text-gray-400 disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:transform-none disabled:shadow-none disabled:cursor-not-allowed"
                   disabled={!ruleQuizQuestions.some(q => q.difficulty === 'easy')}
                 >
                   Easy 😊
                 </button>
                 <button
                   onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'medium'))}
-                  className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+                  className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white hover:-translate-y-0.5 transform disabled:border-gray-300 disabled:text-gray-400 disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:transform-none disabled:shadow-none disabled:cursor-not-allowed"
                   disabled={!ruleQuizQuestions.some(q => q.difficulty === 'medium')}
                 >
                   Medium 🤔
                 </button>
                 <button
                   onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'hard'))}
-                  className="flex-1 py-3 bg-gradient-to-r from-rose-500 to-red-500 text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transform transition font-bold shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+                  className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white hover:-translate-y-0.5 transform disabled:border-gray-300 disabled:text-gray-400 disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:transform-none disabled:shadow-none disabled:cursor-not-allowed"
                   disabled={!ruleQuizQuestions.some(q => q.difficulty === 'hard')}
                 >
                   Hard 🔥
@@ -412,7 +425,7 @@ const SVAInfographic: React.FC = () => {
           )}
         </div>
 
-        <div className="text-center mt-8 text-gray-600">
+        <div className="text-center mt-8 text-gray-700">
           <p className="text-sm">Created by Ms. Shalaka Kashikar</p>
         </div>
       </div>

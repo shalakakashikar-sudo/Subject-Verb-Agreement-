@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 
 interface MascotProps {
   expression?: 'happy' | 'thinking' | 'excited';
+  isCelebrating?: boolean;
 }
 
-const Mascot: React.FC<MascotProps> = ({ expression = 'happy' }) => {
+const Mascot: React.FC<MascotProps> = ({ expression = 'happy', isCelebrating = false }) => {
   const [isTickled, setIsTickled] = useState(false);
 
   const handleTickle = () => {
@@ -69,7 +70,11 @@ const Mascot: React.FC<MascotProps> = ({ expression = 'happy' }) => {
 
   const bodyPath = "M 46 28 C 46 40 38 48 25 48 C 12 48 4 40 4 28 C 4 16 12 5 25 5 C 38 5 46 16 46 28 Z";
 
-  const currentAnimation = isTickled ? 'mascot-tickle-animation' : 'mascot-bob-animation';
+  const currentAnimation = isTickled 
+    ? 'mascot-tickle-animation' 
+    : isCelebrating 
+    ? 'mascot-celebrate-animation' 
+    : 'mascot-bob-animation';
 
   return (
     <div 

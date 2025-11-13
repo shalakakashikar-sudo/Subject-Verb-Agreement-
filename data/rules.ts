@@ -354,7 +354,7 @@ export const initialQuizQuestions: InitialQuizQuestions = {
 export const ruleCategories: RuleCategory[] = [
     {
       title: "I. Core Principles and Foundational Rules",
-      color: "bg-blue-100 border-blue-200",
+      borderColor: "border-blue-400",
       icon: "📚",
       rules: [
         rule1,
@@ -364,7 +364,7 @@ export const ruleCategories: RuleCategory[] = [
     },
     {
       title: "II. Compound Subjects and Conjunctions",
-      color: "bg-emerald-100 border-emerald-200",
+      borderColor: "border-emerald-400",
       icon: "🔗",
       rules: [
         rule4,
@@ -374,7 +374,7 @@ export const ruleCategories: RuleCategory[] = [
     },
     {
       title: "III. Proximity Traps and Inverted Structures",
-      color: "bg-amber-100 border-amber-200",
+      borderColor: "border-amber-400",
       icon: "⚠️",
       rules: [
         rule7,
@@ -384,7 +384,7 @@ export const ruleCategories: RuleCategory[] = [
     },
     {
       title: "IV. Tricky Pronouns and Nouns",
-      color: "bg-violet-100 border-violet-200",
+      borderColor: "border-violet-400",
       icon: "🎭",
       rules: [
         rule10,
@@ -398,7 +398,7 @@ export const ruleCategories: RuleCategory[] = [
     },
     {
       title: "V. Advanced and Special Cases",
-      color: "bg-rose-100 border-rose-200",
+      borderColor: "border-rose-400",
       icon: "🎓",
       rules: [
         rule17,
