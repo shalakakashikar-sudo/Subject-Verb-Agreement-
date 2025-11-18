@@ -16,6 +16,47 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return newArray;
 };
 
+// --- Utility for Stratified Sampling (Balanced Randomization) ---
+const getStratifiedQuestions = (allQuestions: QuizQuestion[], count: number): QuizQuestion[] => {
+  // Group questions by rule to ensure balanced representation
+  const groups: Record<string, QuizQuestion[]> = {};
+  allQuestions.forEach(q => {
+    const key = q.rule || 'General';
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(q);
+  });
+
+  const ruleKeys = Object.keys(groups);
+  const selected: QuizQuestion[] = [];
+
+  // Shuffle questions within each group first
+  ruleKeys.forEach(key => {
+    groups[key] = shuffleArray(groups[key]);
+  });
+
+  // Round-robin selection from each group
+  let activeKeys = [...ruleKeys];
+  // Shuffle the order of rules we pick from so Rule 1 isn't always first
+  activeKeys = shuffleArray(activeKeys);
+
+  while (selected.length < count && activeKeys.length > 0) {
+      const nextActiveKeys: string[] = [];
+      
+      for (const key of activeKeys) {
+          if (selected.length >= count) break;
+          
+          const group = groups[key];
+          if (group.length > 0) {
+              selected.push(group.pop()!);
+              if (group.length > 0) nextActiveKeys.push(key);
+          }
+      }
+      activeKeys = nextActiveKeys;
+  }
+  
+  return shuffleArray(selected); // Final shuffle so questions aren't grouped by rule in the quiz
+};
+
 const FormulaDisplay: React.FC<{ formula: string; baseTextSize?: string }> = ({
   formula,
   baseTextSize = 'text-xs',
@@ -72,6 +113,33 @@ const SVAInfographic: React.FC = () => {
     setShowSummary(false);
   };
 
+  // Helper to gather questions from all rules for Mastery Mode
+  const getMasteryQuestions = (difficulty: Difficulty): QuizQuestion[] => {
+    const pool: QuizQuestion[] = [];
+    
+    Object.entries(ruleQuizzes).forEach(([idStr, questions]) => {
+        const ruleId = parseInt(idStr);
+        // Find rule name for the 'rule' property
+        let ruleName = `Rule ${ruleId}`;
+        for (const cat of ruleCategories) {
+            const found = cat.rules.find(r => r.id === ruleId);
+            if (found) {
+                ruleName = found.name;
+                break;
+            }
+        }
+
+        const filtered = questions.filter(q => q.difficulty === difficulty).map(q => ({
+            ...q,
+            rule: ruleName // Inject rule name so we know where it came from
+        }));
+        
+        pool.push(...filtered);
+    });
+    
+    return pool;
+  };
+
   // Step 1: User selects difficulty -> Open Config
   const initiateQuizConfig = (questions: QuizQuestion[]) => {
     if (!questions || questions.length === 0) return;
@@ -84,8 +152,16 @@ const SVAInfographic: React.FC = () => {
 
   // Step 2: User selects question count -> Start Quiz
   const startQuiz = (count: number) => {
-    const shuffled = shuffleArray(pendingQuestions);
-    const selected = shuffled.slice(0, Math.min(count, shuffled.length));
+    let selected: QuizQuestion[];
+
+    if (selectedRule === null) {
+        // Mastery Mode: Use Stratified Sampling to balance across rules
+        selected = getStratifiedQuestions(pendingQuestions, count);
+    } else {
+        // Single Rule Mode: Simple Random Shuffle
+        const shuffled = shuffleArray(pendingQuestions);
+        selected = shuffled.slice(0, Math.min(count, shuffled.length));
+    }
     
     setActiveQuizQuestions(selected);
     setQuizMode(true);
@@ -391,19 +467,19 @@ const SVAInfographic: React.FC = () => {
             <p className="text-gray-600 mb-4">Ready to test your overall knowledge? Choose a difficulty level to start a quiz with questions from all rules.</p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button
-                onClick={() => initiateQuizConfig(initialQuizQuestions.easy)}
+                onClick={() => initiateQuizConfig(getMasteryQuestions('easy'))}
                 className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:-translate-y-0.5 transform"
               >
                 Easy 😊
               </button>
               <button
-                onClick={() => initiateQuizConfig(initialQuizQuestions.medium)}
+                onClick={() => initiateQuizConfig(getMasteryQuestions('medium'))}
                 className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white hover:-translate-y-0.5 transform"
               >
                 Medium 🤔
               </button>
               <button
-                onClick={() => initiateQuizConfig(initialQuizQuestions.hard)}
+                onClick={() => initiateQuizConfig(getMasteryQuestions('hard'))}
                 className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white hover:-translate-y-0.5 transform"
               >
                 Hard 🔥
@@ -598,4 +674,3 @@ const SVAInfographic: React.FC = () => {
 };
 
 export default SVAInfographic;
-    
