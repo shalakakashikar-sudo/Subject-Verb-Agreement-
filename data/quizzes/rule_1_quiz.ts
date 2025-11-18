@@ -1,480 +1,1060 @@
+
 import type { QuizQuestion } from '../../types.ts';
 
 export const rule1Quiz: QuizQuestion[] = [
+  // A. Easy Level (50 Questions)
   {
-    question: "She ___ to school every day.",
-    options: ["walk", "walks", "walking", "walked"],
+    question: "She always ___ to the library.",
+    options: ["go", "goes", "going", "went"],
     correct: 1,
     difficulty: "easy",
-    explanation: "The subject 'She' is a third-person singular pronoun, which requires the verb to have an '-s' ending in the present tense. Therefore, 'walks' is the correct verb."
+    explanation: "The subject \"She\" is third-person singular and requires the verb ending in -es."
   },
   {
-    question: "The dogs ___ loudly in the yard.",
-    options: ["bark", "barks", "is barking", "has barked"],
+    question: "The students ___ their own lunch.",
+    options: ["brings", "bring", "brought", "has brought"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The subject \"students\" is plural and requires the base verb form."
+  },
+  {
+    question: "I ___ music every evening.",
+    options: ["listens", "listen", "listened", "listening"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The subject \"I\" takes the base verb form."
+  },
+  {
+    question: "The clock ___ time accurately.",
+    options: ["show", "shows", "is showing", "showing"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"clock\" requires the verb ending in -s."
+  },
+  {
+    question: "They rarely ___ the rules.",
+    options: ["breaks", "breaking", "broken", "break"],
+    correct: 3,
+    difficulty: "easy",
+    explanation: "The plural subject \"They\" takes the base verb form."
+  },
+  {
+    question: "He ___ a new bicycle.",
+    options: ["have", "has", "had", "having"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"He\" takes the singular auxiliary verb has."
+  },
+  {
+    question: "We ___ fresh fruit daily.",
+    options: ["eats", "eating", "ate", "eat"],
+    correct: 3,
+    difficulty: "easy",
+    explanation: "The subject \"We\" is plural and requires the base verb form."
+  },
+  {
+    question: "You ___ great today.",
+    options: ["look", "looks", "looked", "looking"],
     correct: 0,
     difficulty: "easy",
-    explanation: "The subject 'The dogs' is plural, so it takes the base form of the verb, 'bark'."
+    explanation: "The subject \"You\" takes the base verb form."
   },
   {
-    question: "It ___ like a good idea.",
-    options: ["seem", "seems", "are seeming", "have seemed"],
+    question: "The dog ___ its tail happily.",
+    options: ["wag", "wags", "wagging", "wagged"],
     correct: 1,
     difficulty: "easy",
-    explanation: "The subject 'It' is a third-person singular pronoun, requiring the verb to end in '-s'. 'Seems' is correct."
+    explanation: "The singular subject \"dog\" requires the verb ending in -s."
   },
   {
-      question: "They ___ to the beach every summer.",
-      options: ["go", "goes", "going", "gone"],
-      correct: 0,
-      difficulty: "easy",
-      explanation: "The subject 'They' is plural, so it takes the base form of the verb, 'go'."
+    question: "The dogs ___ when strangers approach.",
+    options: ["barks", "barking", "barked", "bark"],
+    correct: 3,
+    difficulty: "easy",
+    explanation: "The plural subject \"dogs\" requires the base verb form."
   },
   {
-      question: "A bird ___ in the tree.",
-      options: ["sing", "sings", "are singing", "have sung"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'A bird' is singular, so the verb needs an '-s' ending. 'sings' is correct."
+    question: "It always ___ cold in the cellar.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "easy",
+    explanation: "The singular subject \"It\" takes the singular form is."
   },
   {
-      question: "You ___ very kind.",
-      options: ["is", "are", "am", "be"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'You' always takes a plural verb form, so 'are' is correct."
+    question: "The bird ___ high in the sky.",
+    options: ["fly", "flies", "flying", "flew"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"bird\" requires the verb ending in -ies."
   },
   {
-      question: "My brother ___ video games.",
-      options: ["play", "plays", "are playing", "have played"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'My brother' is singular, so the verb requires an '-s' ending. 'plays' is correct."
+    question: "The children ___ many stories.",
+    options: ["reads", "read", "reading", "readed"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The plural subject \"children\" takes the base verb form."
   },
   {
-      question: "The flowers ___ beautiful.",
-      options: ["look", "looks", "is looking", "has looked"],
-      correct: 0,
-      difficulty: "easy",
-      explanation: "The subject 'The flowers' is plural, so it takes the base form of the verb, 'look'."
+    question: "She ___ a beautiful new home.",
+    options: ["has", "have", "having", "is having"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"She\" takes the singular auxiliary verb has."
   },
   {
-      question: "I ___ milk every morning.",
-      options: ["drinks", "drink", "is drinking", "has drank"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The first-person pronoun 'I' takes the base form of the verb, 'drink'."
+    question: "Our teacher ___ grammar lessons clearly.",
+    options: ["explain", "explains", "explained", "explaining"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"teacher\" requires the verb ending in -s."
   },
   {
-      question: "He ___ his bike to work.",
-      options: ["ride", "rides", "are riding", "have ridden"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'He' is a third-person singular pronoun, so the verb ends in '-s'. 'rides' is correct."
+    question: "The clouds ___ dark before the rain.",
+    options: ["looks", "look", "looked", "looking"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The plural subject \"clouds\" requires the base verb form."
   },
   {
-      question: "We ___ a big family.",
-      options: ["is", "are", "has", "have"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'We' is plural, so it requires the plural verb 'are'."
+    question: "I ___ excited for the weekend.",
+    options: ["is", "are", "am", "be"],
+    correct: 2,
+    difficulty: "easy",
+    explanation: "The subject \"I\" requires the first person singular form am."
   },
   {
-      question: "The sun ___ brightly.",
-      options: ["shine", "shines", "are shining", "have shone"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'The sun' is a singular noun, requiring the verb to end in '-s'. 'shines' is correct."
+    question: "He ___ not like loud noises.",
+    options: ["do", "does", "did", "doesn't"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"He\" requires the singular auxiliary verb does."
   },
   {
-      question: "The children ___ in the park.",
-      options: ["plays", "play", "is playing", "has played"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'The children' is a plural noun, so it takes the base form of the verb, 'play'."
+    question: "We ___ at the park every Sunday.",
+    options: ["runs", "running", "ran", "run"],
+    correct: 3,
+    difficulty: "easy",
+    explanation: "The plural subject \"We\" takes the base verb form."
   },
   {
-      question: "An apple ___ good for you.",
-      options: ["is", "are", "be", "have"],
-      correct: 0,
-      difficulty: "easy",
-      explanation: "The subject 'An apple' is singular, so it requires the singular verb 'is'."
+    question: "The kettle ___ when the water is hot.",
+    options: ["sings", "singing", "sang", "sing"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"kettle\" requires the verb ending in -s."
   },
   {
-      question: "The teacher ___ the lesson.",
-      options: ["explain", "explains", "are explaining", "have explained"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'The teacher' is a singular noun, so the verb needs an '-s' ending. 'explains' is correct."
+    question: "You ___ not need a ticket.",
+    options: ["do", "does", "didn't", "doesn't"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The subject \"You\" takes the plural auxiliary verb do."
   },
   {
-      question: "Computers ___ our lives easier.",
-      options: ["makes", "make", "is making", "has made"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'Computers' is plural, so it requires the base form of the verb, 'make'."
+    question: "My friend ___ on a large farm.",
+    options: ["live", "lives", "living", "lived"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"My friend\" requires the verb ending in -s."
   },
   {
-      question: "She ___ three languages.",
-      options: ["speak", "speaks", "is speaking", "have spoken"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'She' is a third-person singular pronoun, so the verb ends in '-s'. 'speaks' is correct."
+    question: "My friends ___ to visit often.",
+    options: ["comes", "come", "came", "coming"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The plural subject \"My friends\" takes the base verb form."
   },
   {
-      question: "My parents ___ in a small house.",
-      options: ["live", "lives", "is living", "have lived"],
-      correct: 0,
-      difficulty: "easy",
-      explanation: "The subject 'My parents' is plural, so it takes the base form of the verb, 'live'."
+    question: "The moon ___ brightly tonight.",
+    options: ["shine", "shines", "shining", "shined"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"moon\" requires the verb ending in -s."
   },
   {
-      question: "The baby ___ when it's hungry.",
-      options: ["cry", "cries", "are crying", "have cried"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'The baby' is a singular noun, so the verb needs an '-es' ending. 'cries' is correct."
+    question: "The workers ___ their tasks quickly.",
+    options: ["completes", "complete", "completed", "completing"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The plural subject \"The workers\" takes the base verb form."
   },
   {
-      question: "Those monkeys ___ bananas.",
-      options: ["eats", "eat", "is eating", "has eaten"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'Those monkeys' is plural, so it takes the base form of the verb, 'eat'."
+    question: "The plant ___ quickly in the sun.",
+    options: ["grows", "growing", "grew", "grow"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"plant\" requires the verb ending in -s."
   },
   {
-      question: "The train ___ at 8 AM.",
-      options: ["arrive", "arrives", "are arriving", "have arrived"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'The train' is singular, so the verb needs an '-s' ending. 'arrives' is correct."
+    question: "They ___ not have enough time.",
+    options: ["do", "does", "didn't", "has"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The plural subject \"They\" takes the plural auxiliary verb do."
   },
   {
-      question: "The stars ___ at night.",
-      options: ["twinkle", "twinkles", "is twinkling", "has twinkled"],
-      correct: 0,
-      difficulty: "easy",
-      explanation: "The subject 'The stars' is plural, so it takes the base form of the verb, 'twinkle'."
+    question: "It ___ often in the mountains.",
+    options: ["snow", "snows", "snowing", "snowed"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"It\" requires the verb ending in -s."
   },
   {
-      question: "His cat ___ a lot.",
-      options: ["sleep", "sleeps", "are sleeping", "have slept"],
-      correct: 1,
-      difficulty: "easy",
-      explanation: "The subject 'His cat' is singular, so the verb ends in '-s'. 'sleeps' is correct."
+    question: "The chairs ___ comfortable.",
+    options: ["is", "was", "are", "be"],
+    correct: 2,
+    difficulty: "easy",
+    explanation: "The plural subject \"The chairs\" requires the plural form are."
   },
   {
-    question: "My best friend ___ next door.",
-    options: ["live", "lives", "is living", "have lived"],
+    question: "A horse ___ hay.",
+    options: ["eat", "eats", "eating", "ate"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"horse\" requires the verb ending in -s."
+  },
+  {
+    question: "Horses ___ hay.",
+    options: ["eats", "eating", "ate", "eat"],
+    correct: 3,
+    difficulty: "easy",
+    explanation: "The plural subject \"Horses\" requires the base verb form."
+  },
+  {
+    question: "I ___ not have a pen right now.",
+    options: ["do", "does", "don't", "doesn't"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The subject \"I\" requires the plural auxiliary verb do."
+  },
+  {
+    question: "She ___ a jacket because she is cold.",
+    options: ["wears", "wear", "wearing", "wore"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"She\" requires the verb ending in -s."
+  },
+  {
+    question: "We ___ always on time.",
+    options: ["is", "are", "was", "be"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The plural subject \"We\" requires the plural form are."
+  },
+  {
+    question: "The key ___ the lock.",
+    options: ["fits", "fit", "fitting", "fitted"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"key\" requires the verb ending in -s."
+  },
+  {
+    question: "The keys ___ the lock.",
+    options: ["fits", "fit", "fitting", "fitted"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The plural subject \"keys\" requires the base verb form."
+  },
+  {
+    question: "He ___ his homework before dinner.",
+    options: ["does", "do", "doing", "did"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"He\" requires the singular auxiliary verb does."
+  },
+  {
+    question: "They ___ not talk during the film.",
+    options: ["do", "does", "didn't", "has"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The plural subject \"They\" requires the plural auxiliary verb do."
+  },
+  {
+    question: "The letter ___ on the desk.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "easy",
+    explanation: "The singular subject \"letter\" requires the singular verb is."
+  },
+  {
+    question: "The letters ___ on the desk.",
+    options: ["are", "is", "was", "has been"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The plural subject \"letters\" requires the plural verb are."
+  },
+  {
+    question: "My car ___ every morning.",
+    options: ["starts", "starting", "started", "start"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"My car\" requires the verb ending in -s."
+  },
+  {
+    question: "My cars ___ every morning.",
+    options: ["start", "starts", "starting", "started"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The plural subject \"My cars\" requires the base verb form."
+  },
+  {
+    question: "I ___ a book.",
+    options: ["reads", "read", "reading", "have read"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The subject \"I\" takes the base verb form."
+  },
+  {
+    question: "You ___ a book.",
+    options: ["reads", "read", "reading", "have read"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The subject \"You\" takes the base verb form."
+  },
+  {
+    question: "She ___ a book.",
+    options: ["read", "reads", "reading", "have read"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"She\" requires the verb ending in -s."
+  },
+  {
+    question: "The gardener ___ the seeds.",
+    options: ["sows", "sow", "sowed", "sowing"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"gardener\" requires the verb ending in -s."
+  },
+  {
+    question: "The babies ___ when they are hungry.",
+    options: ["cries", "cried", "crying", "cry"],
+    correct: 3,
+    difficulty: "easy",
+    explanation: "The plural subject \"babies\" requires the base verb form."
+  },
+  {
+    question: "The baby ___ all night.",
+    options: ["cry", "cries", "crying", "cried"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The singular subject \"baby\" requires the singular verb form, cries (consonant + y rule)."
+  },
+  {
+    question: "The train ___ on time.",
+    options: ["is", "are", "was", "were"],
+    correct: 0,
+    difficulty: "easy",
+    explanation: "The singular subject \"train\" requires the singular verb is."
+  },
+  {
+    question: "The trains ___ on time.",
+    options: ["is", "are", "was", "were"],
+    correct: 1,
+    difficulty: "easy",
+    explanation: "The plural subject \"trains\" requires the plural verb are."
+  },
+
+  // B. Medium Level (50 Questions)
+  {
+    question: "He usually ___ away on holidays.",
+    options: ["go", "goes", "going", "went"],
     correct: 1,
     difficulty: "medium",
-    explanation: "The subject 'My best friend' is a single person (singular), so it requires the verb form 'lives'."
+    explanation: "The singular subject \"He\" requires the verb ending in -es."
   },
   {
-    question: "A flock of birds ___ south for the winter.",
-    options: ["fly", "flies", "are flying", "is fly"],
-    correct: 1,
-    difficulty: "medium",
-    explanation: "The subject is 'flock' (a collective noun acting as a single unit), which is singular. Therefore, it requires the singular verb 'flies'."
-  },
-  {
-    question: "The information you provided ___ helpful.",
-    options: ["was", "were", "are", "be"],
+    question: "She ___ the difficult assignments.",
+    options: ["studies", "study", "studying", "studied"],
     correct: 0,
     difficulty: "medium",
-    explanation: "The subject 'information' is an uncountable noun, which is always treated as singular. Therefore, the singular verb 'was' is correct."
+    explanation: "The singular subject \"She\" requires the singular verb form, studies (consonant + y rule)."
   },
   {
-      question: "The team ___ hard every day.",
-      options: ["practice", "practices", "are practicing", "have practiced"],
-      correct: 1,
-      difficulty: "medium",
-      explanation: "The collective noun 'team' is acting as a single unit, which makes it a singular subject requiring the verb 'practices'."
+    question: "The machine ___ the small parts.",
+    options: ["fix", "fixes", "fixing", "fixed"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"machine\" requires the verb ending in -es."
   },
   {
-      question: "The herd of elephants ___ towards the river.",
-      options: ["move", "moves", "are moving", "have moved"],
-      correct: 1,
-      difficulty: "medium",
-      explanation: "The subject is 'herd' (singular), not 'elephants'. Therefore, it requires the singular verb 'moves'."
+    question: "The writer ___ new genres every year.",
+    options: ["try", "tries", "trying", "tried"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"writer\" requires the singular verb form, tries (consonant + y rule)."
   },
   {
-      question: "The quality of these apples ___ poor.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject is 'quality' (singular), not 'apples'. The verb must be singular, so 'is' is correct."
+    question: "The bus ___ at the corner.",
+    options: ["stop", "stops", "stopping", "stopped"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"bus\" requires the verb ending in -s."
   },
   {
-      question: "All of the furniture ___ new.",
-      options: ["looks", "look", "are looking", "have looked"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject 'furniture' is an uncountable noun, which is always treated as singular. Therefore, the verb is 'looks'."
+    question: "You ___ not need a signature.",
+    options: ["do", "does", "didn't", "doesn't"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The subject \"You\" takes the plural auxiliary verb do."
   },
   {
-      question: "The pack of wolves ___ at the moon.",
-      options: ["howl", "howls", "are howling", "have howled"],
-      correct: 1,
-      difficulty: "medium",
-      explanation: "The true subject is the collective noun 'pack' (singular), so the verb must be 'howls'."
+    question: "I ___ not agree with the policy.",
+    options: ["do", "does", "don't", "doesn't"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The subject \"I\" takes the plural auxiliary verb do."
   },
   {
-      question: "The advice you gave me ___ very helpful.",
-      options: ["was", "were", "are", "be"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject 'advice' is an uncountable noun, which is always singular. Thus, 'was' is correct."
+    question: "My cousin ___ fluent Spanish.",
+    options: ["speaks", "speak", "speaking", "spoke"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"My cousin\" requires the verb ending in -s."
   },
   {
-      question: "The man with the yellow hat ___ over there.",
-      options: ["stands", "stand", "are standing", "have stood"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject is 'man' (singular). The intervening phrase 'with the yellow hat' does not change the subject. The verb is 'stands'."
+    question: "The tutors ___ papers after class.",
+    options: ["reviews", "reviewing", "reviewed", "review"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"tutors\" requires the base verb form."
   },
   {
-      question: "The group of tourists ___ lost.",
-      options: ["seems", "seem", "are seeming", "have seemed"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The collective noun 'group' is acting as a single unit, so it requires the singular verb 'seems'."
+    question: "The single athlete ___ the marathon.",
+    options: ["runs", "run", "running", "ran"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"athlete\" requires the verb ending in -s."
   },
   {
-      question: "The smell of the flowers ___ the room.",
-      options: ["fill", "fills", "are filling", "have filled"],
-      correct: 1,
-      difficulty: "medium",
-      explanation: "The true subject is 'smell' (singular), not 'flowers'. The verb must be singular, so 'fills' is correct."
+    question: "The athletes ___ the marathon.",
+    options: ["runs", "run", "running", "ran"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The plural subject \"athletes\" requires the base verb form."
   },
   {
-      question: "The captain of the guards ___ his post.",
-      options: ["patrol", "patrols", "are patrolling", "has patrolled"],
-      correct: 1,
-      difficulty: "medium",
-      explanation: "The subject is 'captain' (singular). The phrase 'of the guards' is an intervening phrase. The verb is 'patrols'."
+    question: "The school ___ new books every term.",
+    options: ["buys", "buy", "buying", "bought"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"school\" requires the verb ending in -s."
   },
   {
-      question: "The collection of rare stamps ___ a lot of money.",
-      options: ["is worth", "are worth", "worth", "have worth"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject is 'collection' (singular), which requires the singular verb phrase 'is worth'."
+    question: "Our parents ___ a beautiful garden.",
+    options: ["have", "has", "having", "is having"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The plural subject \"parents\" requires the plural auxiliary verb have."
   },
   {
-      question: "Patience ___ a virtue.",
-      options: ["is", "are", "be", "have"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject 'Patience' is an uncountable noun and is treated as singular, requiring the verb 'is'."
+    question: "The sun ___ in the east.",
+    options: ["rise", "rises", "rising", "rose"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"sun\" requires the verb ending in -s."
   },
   {
-      question: "A bag of groceries ___ on the counter.",
-      options: ["sits", "sit", "are sitting", "have sat"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject is 'bag' (singular), not 'groceries'. Therefore, the singular verb 'sits' is correct."
+    question: "The clock ___ strike twelve soon.",
+    options: ["do", "does", "didn't", "don't"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"clock\" requires the singular auxiliary verb does."
   },
   {
-      question: "The traffic ___ bad during rush hour.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject 'traffic' is an uncountable noun, which is always singular. So, 'is' is correct."
+    question: "The students ___ not skip classes.",
+    options: ["do", "does", "don't", "doesn't"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The plural subject \"The students\" requires the plural auxiliary verb do."
   },
   {
-      question: "My knowledge of cars ___ limited.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject is 'knowledge' (uncountable and singular), not 'cars'. The verb must be 'is'."
+    question: "A sheep ___ near the fence.",
+    options: ["wander", "wanders", "wandering", "wandered"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"A sheep\" requires the verb ending in -s."
   },
   {
-      question: "The main reason for his mistakes ___ a lack of focus.",
-      options: ["was", "were", "are", "be"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The subject is 'reason' (singular), so it requires the singular verb 'was'."
+    question: "Sheep ___ in the meadow.",
+    options: ["wanders", "wandering", "wandered", "graze"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The subject \"Sheep\" is often used as a plural noun (referring to multiple animals) and requires the base verb form (graze)."
   },
   {
-      question: "The leader of the protestors ___ to the crowd.",
-      options: ["speak", "speaks", "are speaking", "has spoken"],
-      correct: 1,
-      difficulty: "medium",
-      explanation: "The subject is the singular noun 'leader', so the verb must be 'speaks'."
+    question: "The woman ___ two pets.",
+    options: ["have", "has", "having", "is having"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"woman\" requires the singular auxiliary has."
   },
   {
-      question: "His performance in all the recent games ___ been outstanding.",
-      options: ["has", "have", "is", "are"],
-      correct: 0,
-      difficulty: "medium",
-      explanation: "The true subject is 'performance' (singular), not 'games'. It requires the singular auxiliary verb 'has'."
+    question: "The women ___ the answer.",
+    options: ["knows", "knowing", "knew", "know"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"women\" requires the base verb form."
   },
   {
-      question: "The painting with the bright colors ___ my attention.",
-      options: ["catch", "catches", "are catching", "have caught"],
-      correct: 1,
-      difficulty: "medium",
-      explanation: "The subject is 'painting' (singular). The intervening phrase 'with the bright colors' doesn't affect the verb. Thus, 'catches' is correct."
+    question: "A zebra ___ stripes.",
+    options: ["has", "have", "having", "is having"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"A zebra\" requires the singular auxiliary has."
   },
   {
-    question: "The constant humming from the many refrigerators ___ me crazy.",
-    options: ["drive", "drives", "are driving", "have driven"],
+    question: "Zebras ___ in herds.",
+    options: ["live", "lives", "living", "lived"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The plural subject \"Zebras\" requires the base verb form."
+  },
+  {
+    question: "The girl ___ her eyes.",
+    options: ["closes", "closing", "closed", "close"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"girl\" requires the verb ending in -s."
+  },
+  {
+    question: "The girls ___ their notebooks.",
+    options: ["opens", "opening", "opened", "open"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"girls\" requires the base verb form."
+  },
+  {
+    question: "The chef ___ the meal carefully.",
+    options: ["prepares", "prepare", "preparing", "prepared"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"chef\" requires the verb ending in -s."
+  },
+  {
+    question: "The chefs ___ a new menu.",
+    options: ["designs", "designing", "designed", "design"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"chefs\" requires the base verb form."
+  },
+  {
+    question: "She ___ not share her ideas often.",
+    options: ["do", "does", "didn't", "don't"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"She\" requires the singular auxiliary verb does."
+  },
+  {
+    question: "I ___ not feel comfortable with that color.",
+    options: ["do", "does", "didn't", "doesn't"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The subject \"I\" requires the plural auxiliary verb do."
+  },
+  {
+    question: "The volunteer ___ water to the runners.",
+    options: ["gives", "give", "giving", "gave"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"volunteer\" requires the verb ending in -s."
+  },
+  {
+    question: "The volunteers ___ water bottles.",
+    options: ["gives", "giving", "gave", "give"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"volunteers\" requires the base verb form."
+  },
+  {
+    question: "A gardener ___ the hedge.",
+    options: ["trims", "trimming", "trimmed", "trim"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"gardener\" requires the verb ending in -s."
+  },
+  {
+    question: "The hedges ___ trimming.",
+    options: ["needs", "need", "needed", "needing"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The plural subject \"hedges\" requires the base verb form."
+  },
+  {
+    question: "It ___ a strange scent.",
+    options: ["has", "have", "having", "is having"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"It\" requires the singular auxiliary has."
+  },
+  {
+    question: "We ___ not know the way.",
+    options: ["do", "does", "didn't", "doesn't"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The plural subject \"We\" requires the plural auxiliary do."
+  },
+  {
+    question: "She ___ always happy.",
+    options: ["is", "are", "was", "were"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"She\" requires the singular verb is."
+  },
+  {
+    question: "They ___ very happy.",
+    options: ["is", "was", "are", "has been"],
+    correct: 2,
+    difficulty: "medium",
+    explanation: "The plural subject \"They\" requires the plural verb are."
+  },
+  {
+    question: "The mirror ___ clean.",
+    options: ["looks", "looking", "looked", "look"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"mirror\" requires the verb ending in -s."
+  },
+  {
+    question: "The clocks ___ slowly.",
+    options: ["tick", "ticks", "ticking", "ticked"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The plural subject \"clocks\" requires the base verb form."
+  },
+  {
+    question: "The farmer ___ grain.",
+    options: ["sells", "sell", "selling", "sold"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"farmer\" requires the verb ending in -s."
+  },
+  {
+    question: "The farmers ___ their produce.",
+    options: ["sells", "selling", "sold", "sell"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"farmers\" requires the base verb form."
+  },
+  {
+    question: "He ___ not want to go home.",
+    options: ["do", "does", "don't", "doesn't"],
+    correct: 1,
+    difficulty: "medium",
+    explanation: "The singular subject \"He\" requires the singular auxiliary verb does."
+  },
+  {
+    question: "I ___ not want to go home.",
+    options: ["do", "does", "don't", "doesn't"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The subject \"I\" requires the plural auxiliary verb do."
+  },
+  {
+    question: "It ___ a lot of time.",
+    options: ["takes", "take", "taking", "took"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"It\" requires the verb ending in -s."
+  },
+  {
+    question: "The toys ___ scattered everywhere.",
+    options: ["are", "is", "was", "has been"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The plural subject \"toys\" requires the plural verb are."
+  },
+  {
+    question: "The puzzle ___ difficult to finish.",
+    options: ["is", "are", "was", "were"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"puzzle\" requires the singular verb is."
+  },
+  {
+    question: "The boy ___ the ball.",
+    options: ["throws", "throwing", "threw", "throw"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"boy\" requires the verb ending in -s."
+  },
+  {
+    question: "The boys ___ the ball.",
+    options: ["throws", "throwing", "threw", "throw"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"boys\" requires the base verb form."
+  },
+  {
+    question: "The mouse ___ across the floor.",
+    options: ["scurries", "scurry", "scurried", "scurrying"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The singular subject \"mouse\" requires the singular verb form, scurries (consonant + y rule)."
+  },
+  {
+    question: "The mice ___ in the walls.",
+    options: ["scurries", "scurried", "scurrying", "scurry"],
+    correct: 3,
+    difficulty: "medium",
+    explanation: "The plural subject \"mice\" requires the base verb form."
+  },
+  {
+    question: "You ___ a talent for writing.",
+    options: ["have", "has", "having", "is having"],
+    correct: 0,
+    difficulty: "medium",
+    explanation: "The subject \"You\" takes the plural auxiliary verb have."
+  },
+
+  // C. Hard Level (50 Questions)
+  {
+    question: "Mathematics ___ a challenging subject.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The subject \"Mathematics\" is plural in form but singular in meaning (academic subject), requiring the singular verb is."
+  },
+  {
+    question: "News from the capital ___ generally positive.",
+    options: ["is", "are", "were", "have been"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "The noun \"News\" is always treated as singular, requiring is."
+  },
+  {
+    question: "Ten dollars ___ the cost of admission.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The subject, \"Ten dollars,\" is a unit of money, treated as singular, requiring is."
+  },
+  {
+    question: "Five miles ___ too far to walk daily.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The subject, \"Five miles,\" is a unit of distance, treated as singular, requiring is."
+  },
+  {
+    question: "To forgive and forget ___ courage.",
+    options: ["require", "requiring", "required", "requires"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The infinitive phrase \"To forgive\" is treated as a single abstract idea, requiring the singular verb requires."
+  },
+  {
+    question: "Reading novels ___ imagination.",
+    options: ["broaden", "broadening", "broadened", "broadens"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The gerund phrase \"Reading novels\" acts as a single noun/idea, requiring the singular verb broadens."
+  },
+  {
+    question: "Running with the dogs ___ my favorite sport.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The gerund subject \"Running with the dogs\" is treated as a single idea, requiring the singular verb is."
+  },
+  {
+    question: "The United States ___ diverse landscapes.",
+    options: ["has", "have", "had", "having"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "Titles like \"The United States\" are treated as singular entities, requiring the singular auxiliary has."
+  },
+  {
+    question: "The committee ___ how to proceed on the rules.",
+    options: ["decide", "decides", "deciding", "decided"],
     correct: 1,
     difficulty: "hard",
-    explanation: "The true subject is the singular gerund 'humming', not the plural noun 'refrigerators'. Therefore, it requires the singular verb 'drives'."
+    explanation: "The collective noun \"committee,\" when acting as a unit, takes a singular verb."
   },
   {
-      question: "The effects of the new policy ___ yet to be seen.",
-      options: ["is", "are", "was", "be"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The subject of the sentence is 'effects', which is plural. Therefore, it requires the plural verb 'are'."
+    question: "The jury ___ on its verdict (acting as a unit).",
+    options: ["is", "are", "were", "be"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "The collective noun \"jury,\" when treated as a single unit, requires the singular verb is."
   },
   {
-      question: "The rhythm of the drums ___ the dancers.",
-      options: ["captivate", "captivates", "are captivating", "have captivated"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The true subject is 'rhythm' (singular), not 'drums'. The verb must agree with 'rhythm', so 'captivates' is correct."
+    question: "Each of the plants ___ a unique color.",
+    options: ["have", "having", "has", "had"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Each\" is always singular, requiring the singular auxiliary has."
   },
   {
-      question: "The mayor, who has been in office for ten years and is known for his speeches, ___ the crowd tomorrow.",
-      options: ["address", "addresses", "are addressing", "have addressed"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The subject is 'The mayor' (singular). The long clause between the subject and verb is an interrupter. The verb must be 'addresses'."
+    question: "Nobody ___ the answer to the complex riddle.",
+    options: ["know", "knowing", "knew", "knows"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Nobody\" (ends in -body) is always singular, requiring the verb ending in -s."
   },
   {
-      question: "The complexity of the various issues discussed at the meetings ___ overwhelming.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The true subject is 'complexity' (singular), not 'issues' or 'meetings'. Therefore, it requires the singular verb 'is'."
+    question: "Every man, woman, and child ___ the right to be heard.",
+    options: ["has", "have", "having", "had"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "The modifier \"Every\" makes the compound subject singular, requiring the singular auxiliary has."
   },
   {
-      question: "Learning the rules of several different board games ___ a lot of time.",
-      options: ["take", "takes", "are taking", "have taken"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The subject is the entire gerund phrase 'Learning the rules...', which is treated as a single activity. This makes the subject singular, requiring 'takes'."
+    question: "More than one boy ___ present in the auditorium.",
+    options: ["were", "are", "was", "have been"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The phrase \"more than one\" requires a singular verb."
   },
   {
-      question: "The source of all the company's problems, from sales to marketing, ___ poor management.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'source' (singular). The intervening phrases do not change this. The verb must be 'is'."
+    question: "The number of errors ___ increasing rapidly.",
+    options: ["are", "have been", "were", "is"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "\"The number\" (referring to a single figure/total) is always singular."
   },
   {
-      question: "A detailed analysis of the sales figures ___ a decline in profits.",
-      options: ["reveal", "reveals", "are revealing", "have revealed"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The subject is 'analysis' (singular), not 'figures'. Therefore, the singular verb 'reveals' is correct."
+    question: "The Netherlands ___ tulips worldwide.",
+    options: ["export", "exporting", "exported", "exports"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "Geographic titles that are plural in form (like The Netherlands) are treated as singular entities."
   },
   {
-      question: "The set of antique knives, which my grandmother gave me, ___ in a special drawer.",
-      options: ["is kept", "are kept", "keep", "keeps"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'set' (singular), not 'knives'. It requires the singular verb phrase 'is kept'."
+    question: "The family ___ for their annual trip (acting as a unit).",
+    options: ["is packing", "are packing", "pack", "packed"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "The collective noun \"family,\" when acting as a single unit, takes a singular verb."
   },
   {
-      question: "The belief that all people are created equal ___ a fundamental principle.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'The belief' (singular). The noun clause that follows it does not affect the main verb, which must be 'is'."
+    question: "Each item ___ two marks.",
+    options: ["carry", "carrying", "carried", "carries"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Each\" is always singular, requiring the verb ending in -ies."
   },
   {
-      question: "The sound of the crashing waves on the shore ___ a calming effect.",
-      options: ["has", "have", "is", "are"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The true subject is 'sound' (singular), not 'waves'. It requires the singular verb 'has'."
+    question: "The book ___ Alice’s Adventures in Wonderland (title).",
+    options: ["are", "were", "is", "have been"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "Titles of single works are always singular."
   },
   {
-      question: "The success of our projects ___ on effective teamwork.",
-      options: ["depend", "depends", "are depending", "have depended"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The subject is 'success' (singular), not 'projects'. Therefore, the verb must be 'depends'."
+    question: "Fifty dollars ___ a fair price for the service.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "\"Fifty dollars\" is treated as a single unit of money, requiring the singular verb is."
   },
   {
-      question: "The satisfaction derived from helping others ___ its own reward.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is the uncountable noun 'satisfaction' (singular), so the verb must be 'is'."
+    question: "Physics ___ difficult to many students.",
+    options: ["seem", "seeming", "seemed", "seems"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "\"Physics\" is treated as a singular academic subject, requiring the verb ending in -s."
   },
   {
-      question: "The politician, accompanied by his wife and three advisors, ___ about to enter the building.",
-      options: ["was", "were", "are", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'The politician' (singular). The additive phrase 'accompanied by...' is an interrupter and must be ignored. The verb is 'was'."
+    question: "That he is honest ___ known to me.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The subject is a noun clause (\"That he is honest\"), treated as a single idea, requiring the singular verb is."
   },
   {
-      question: "The wear and tear on the machinery over the years ___ it less efficient.",
-      options: ["make", "makes", "are making", "have made"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The phrase 'wear and tear' is a single concept, treated as a singular subject. Therefore, the verb is 'makes'."
+    question: "What he says ___ determination.",
+    options: ["require", "requiring", "required", "requires"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The subject is a \"What\" clause (referring to a singular idea), requiring the singular verb requires."
   },
   {
-      question: "The writer's understanding of human relationships ___ her novels so compelling.",
-      options: ["make", "makes", "are making", "have made"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The true subject is 'understanding' (singular), not 'relationships'. The verb must be 'makes'."
+    question: "Seven days ___ required to finish the project.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The subject, \"Seven days,\" is a unit of time, treated as singular, requiring is."
   },
   {
-      question: "The cost of all these new regulations ___ passed on to the consumer.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'cost' (singular), not 'regulations'. The singular verb 'is' is correct."
+    question: "Two and two ___ four.",
+    options: ["make", "making", "made", "makes"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "Mathematical sums (the result) are treated as a single entity, requiring the singular verb makes."
   },
   {
-      question: "The state of the art in modern robotics ___ advancing rapidly.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is the singular noun 'state', not 'art' or 'robotics'. The verb must be 'is'."
+    question: "Something strange ___ happening outside.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Something\" (ends in -thing) is always singular."
   },
   {
-      question: "The fear of spiders, which many people share, ___ known as arachnophobia.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'fear' (singular), so the verb must be 'is'."
+    question: "Nobody ___ the rules.",
+    options: ["knows", "know", "knowing", "knew"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Nobody\" is always singular, requiring the verb ending in -s."
   },
   {
-      question: "The development of new, high-speed trains ___ travel between cities.",
-      options: ["revolutionize", "revolutionizes", "are revolutionizing", "have revolutionized"],
-      correct: 1,
-      difficulty: "hard",
-      explanation: "The subject is 'development' (singular), not 'trains'. Therefore, the verb is 'revolutionizes'."
+    question: "Fifteen minutes ___ enough time for the break.",
+    options: ["is", "are", "were", "be"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "The subject, \"Fifteen minutes,\" is a unit of time, treated as singular."
   },
   {
-      question: "The book's introduction, filled with historical context and character backgrounds, ___ essential reading.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The true subject is 'introduction' (singular). The long intervening phrase must be ignored. The verb is 'is'."
+    question: "Bread and butter ___ a simple meal.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "\"Bread and butter\" is a fixed phrase referring to a single, unified dish, requiring a singular verb."
   },
   {
-      question: "The perspective of the villagers, whose homes were affected by the dam, ___ largely ignored.",
-      options: ["was", "were", "are", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'perspective' (singular), not 'villagers' or 'homes'. It requires the singular verb 'was'."
+    question: "The number of students ___ strictly limited.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "\"The number\" (a specific count) is singular."
   },
   {
-      question: "The consensus among the scientists ___ that the climate is changing.",
-      options: ["is", "are", "were", "be"],
-      correct: 0,
-      difficulty: "hard",
-      explanation: "The subject is 'consensus' (singular), so the verb must be 'is'."
+    question: "To write clearly ___ great practice.",
+    options: ["demand", "demanding", "demanded", "demands"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The infinitive phrase \"To write clearly\" acts as a single noun/idea, requiring the singular verb demands."
+  },
+  {
+    question: "Every cloud ___ a silver lining.",
+    options: ["have", "had", "has", "having"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The modifier \"Every\" makes the subject singular, requiring the singular auxiliary has."
+  },
+  {
+    question: "Nobody ___ allowed inside without a pass.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Nobody\" is always singular."
+  },
+  {
+    question: "The crew ___ preparing to dock the ship (as a unit).",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The collective noun \"crew\" (acting as a unit) takes a singular verb."
+  },
+  {
+    question: "Mumps ___ an infectious disease.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "Names of diseases ending in -s (like Mumps) are treated as singular."
+  },
+  {
+    question: "The team ___ during practice.",
+    options: ["run", "running", "ran", "runs"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The collective noun \"team,\" when acting as a unit, requires the verb ending in -s."
+  },
+  {
+    question: "The management ___ hiring engineers.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The collective noun \"management\" (as a unit) takes a singular verb."
+  },
+  {
+    question: "Three kilometers ___ a short distance for him.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "Units of distance are treated as singular."
+  },
+  {
+    question: "Many a soldier ___ in the war.",
+    options: ["fall", "fell", "fallen", "falls"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The distributive phrase \"Many a soldier\" is treated as singular, requiring the verb ending in -s."
+  },
+  {
+    question: "Everything ___ back eventually.",
+    options: ["come", "coming", "came", "comes"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Everything\" (ends in -thing) is always singular."
+  },
+  {
+    question: "To hide your mistakes ___ not help.",
+    options: ["do", "does", "didn't", "don't"],
+    correct: 1,
+    difficulty: "hard",
+    explanation: "The infinitive phrase subject \"To hide\" is a single idea, requiring the singular auxiliary does."
+  },
+  {
+    question: "Arsenal ___ hard for the finals (AmE usage).",
+    options: ["train", "training", "trained", "trains"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "In American English, sports teams (names) are often treated as singular, requiring the verb ending in -s."
+  },
+  {
+    question: "Liverpool ___ abroad for the match (BrE usage).",
+    options: ["travels", "traveling", "traveled", "travel"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "In British English, collective nouns like teams often take a plural verb."
+  },
+  {
+    question: "The Bhagavad Gita ___ timeless wisdom.",
+    options: ["teach", "teaching", "taught", "teaches"],
+    correct: 3,
+    difficulty: "hard",
+    explanation: "Titles of single works are always singular, requiring the verb ending in -es."
+  },
+  {
+    question: "Every painting and photograph ___ an original.",
+    options: ["are", "were", "was", "have been"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The modifier \"Every\" makes the compound subject singular, requiring the singular verb was."
+  },
+  {
+    question: "The number of applicants ___ increased this year.",
+    options: ["have", "were", "has", "are"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "\"The number\" (a specific total) is singular, requiring the singular auxiliary has."
+  },
+  {
+    question: "The family ___ never been able to agree (acting as individuals).",
+    options: ["have", "has", "having", "had"],
+    correct: 0,
+    difficulty: "hard",
+    explanation: "If the collective noun emphasizes individual members, the plural auxiliary have may be used (often BrE)."
+  },
+  {
+    question: "One of the real problems ___ a lack of oversight.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The true subject is the indefinite pronoun \"One,\" which is always singular."
+  },
+  {
+    question: "Honesty ___ the best policy.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The abstract noun \"Honesty\" is singular, requiring the singular verb is."
+  },
+  {
+    question: "Everybody ___ welcome to join the event.",
+    options: ["are", "were", "is", "be"],
+    correct: 2,
+    difficulty: "hard",
+    explanation: "The indefinite pronoun \"Everybody\" (ends in -body) is always singular."
   }
 ];

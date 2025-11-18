@@ -6,6 +6,16 @@ import { StarIcon, CheckCircleIcon, XCircleIcon, AwardIcon, ChevronLeftIcon, Che
 import Mascot from './Mascot.tsx';
 import { InfoMap } from './infographics/index.ts';
 
+// --- Utility for Randomization ---
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
 const FormulaDisplay: React.FC<{ formula: string; baseTextSize?: string }> = ({
   formula,
   baseTextSize = 'text-xs',
@@ -40,7 +50,12 @@ const FormulaDisplay: React.FC<{ formula: string; baseTextSize?: string }> = ({
 const SVAInfographic: React.FC = () => {
   const [selectedRule, setSelectedRule] = useState<Rule | null>(null);
   const [activeExample, setActiveExample] = useState<number | null>(null);
+  
+  // Quiz State
   const [quizMode, setQuizMode] = useState(false);
+  const [showConfig, setShowConfig] = useState(false); // New: Show question count selection
+  const [showSummary, setShowSummary] = useState(false); // New: Show final score
+  const [pendingQuestions, setPendingQuestions] = useState<QuizQuestion[]>([]); // Questions available for the selected difficulty
   const [activeQuizQuestions, setActiveQuizQuestions] = useState<QuizQuestion[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -51,12 +66,30 @@ const SVAInfographic: React.FC = () => {
   const handleRuleSelect = (rule: Rule | null) => {
     setSelectedRule(rule);
     setActiveExample(null);
+    // Reset quiz states when changing rules
+    setQuizMode(false);
+    setShowConfig(false);
+    setShowSummary(false);
   };
 
-  const handleQuizStart = (questions: QuizQuestion[]) => {
+  // Step 1: User selects difficulty -> Open Config
+  const initiateQuizConfig = (questions: QuizQuestion[]) => {
     if (!questions || questions.length === 0) return;
-    setActiveQuizQuestions(questions);
+    setPendingQuestions(questions);
+    setShowConfig(true);
+    // Reset other states
+    setQuizMode(false);
+    setShowSummary(false);
+  };
+
+  // Step 2: User selects question count -> Start Quiz
+  const startQuiz = (count: number) => {
+    const shuffled = shuffleArray(pendingQuestions);
+    const selected = shuffled.slice(0, Math.min(count, shuffled.length));
+    
+    setActiveQuizQuestions(selected);
     setQuizMode(true);
+    setShowConfig(false);
     setCurrentQuestion(0);
     setScore(0);
     setAnswered(false);
@@ -87,10 +120,143 @@ const SVAInfographic: React.FC = () => {
       setSelectedAnswer(null);
       setCelebrateMascot(false);
     } else {
+      // Finish Quiz -> Show Summary
       setQuizMode(false);
+      setShowSummary(true);
     }
   };
 
+  const exitQuiz = () => {
+    setQuizMode(false);
+    setShowConfig(false);
+    setShowSummary(false);
+  };
+
+  // --- VIEW: QUIZ CONFIGURATION ---
+  if (showConfig) {
+    const availableCount = pendingQuestions.length;
+    const options = [5, 10, 20, 30, 40, 50];
+
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50/90 backdrop-blur-sm">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full animate-slide-in border-2 border-violet-100 relative">
+          <button 
+            onClick={exitQuiz} 
+            className="absolute top-4 left-4 p-2 text-gray-400 hover:text-violet-600 hover:bg-violet-50 rounded-full transition-colors"
+            title="Go Back"
+          >
+            <ChevronLeftIcon size={24} />
+          </button>
+          <div className="flex justify-center mb-6">
+            <Mascot expression="thinking" />
+          </div>
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-2 font-poppins">Quiz Setup</h2>
+          <p className="text-center text-gray-600 mb-6">
+            How many questions would you like to attempt?
+          </p>
+          
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {options.map((opt) => {
+              const isAvailable = availableCount >= opt;
+              
+              return (
+                <button
+                  key={opt}
+                  onClick={() => startQuiz(opt)}
+                  disabled={!isAvailable && opt !== options.find(o => o > availableCount)} // Enable exact matches or the next tier up (which will be clamped)
+                  className={`py-3 rounded-xl font-bold transition-all duration-200 border-2 ${
+                    isAvailable 
+                      ? 'bg-white border-violet-200 text-violet-700 hover:bg-violet-50 hover:border-violet-400 hover:-translate-y-1 shadow-sm' 
+                      : opt < availableCount + 10 ? 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50' : 'bg-slate-100 border-slate-200 text-slate-300 cursor-not-allowed'
+                  }`}
+                >
+                  {opt} Questions
+                </button>
+              )
+            })}
+             {/* Only show 'All' if the available count isn't exactly one of the options */}
+             {!options.includes(availableCount) && (
+                <button
+                    onClick={() => startQuiz(availableCount)}
+                    className="col-span-2 py-3 rounded-xl font-bold transition-all duration-200 border-2 bg-gradient-to-r from-violet-500 to-purple-500 border-transparent text-white hover:shadow-lg hover:-translate-y-1"
+                  >
+                    All {availableCount} Questions
+              </button>
+             )}
+          </div>
+
+          <button
+            onClick={exitQuiz}
+            className="w-full py-3 text-gray-500 font-semibold hover:text-gray-800 transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // --- VIEW: QUIZ SUMMARY ---
+  if (showSummary) {
+    const total = activeQuizQuestions.length;
+    const percentage = Math.round((score / total) * 100);
+    let message = "Good effort!";
+    let expression: 'happy' | 'excited' | 'thinking' = 'thinking';
+    
+    if (percentage === 100) {
+      message = "Perfection! You're a grammar master! 🏆";
+      expression = 'excited';
+    } else if (percentage >= 80) {
+      message = "Amazing job! Keep it up! 🌟";
+      expression = 'happy';
+    } else if (percentage >= 60) {
+      message = "Good work! You're getting there. 👍";
+      expression = 'happy';
+    } else {
+      message = "Keep practicing! You'll improve. 💪";
+      expression = 'thinking';
+    }
+
+    return (
+        <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50/90 backdrop-blur-sm">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full animate-slide-in border-2 border-violet-100 text-center">
+          <div className="flex justify-center mb-6 transform scale-125">
+            <Mascot expression={expression} isCelebrating={percentage >= 80} />
+          </div>
+          
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-2 font-poppins">Quiz Complete!</h2>
+          <p className="text-gray-600 mb-8">{message}</p>
+
+          <div className="bg-slate-50 rounded-xl p-6 mb-8 border border-slate-200">
+            <div className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-1">Your Score</div>
+            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-600 font-poppins">
+                {score} / {total}
+            </div>
+            <div className={`mt-2 font-bold ${percentage >= 80 ? 'text-green-500' : percentage >= 60 ? 'text-amber-500' : 'text-red-400'}`}>
+                {percentage}% Accuracy
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <button
+                onClick={() => initiateQuizConfig(pendingQuestions)} // Retry with same pool
+                className="w-full py-3 bg-violet-100 text-violet-700 rounded-xl font-bold hover:bg-violet-200 transition-colors"
+            >
+                Try Again
+            </button>
+            <button
+                onClick={exitQuiz}
+                className="w-full py-3 bg-gray-800 text-white rounded-xl font-bold hover:bg-gray-900 transition-colors shadow-lg"
+            >
+                Back to Menu
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- VIEW: ACTIVE QUIZ ---
   if (quizMode) {
     const questions = activeQuizQuestions;
     const question = questions[currentQuestion];
@@ -98,13 +264,8 @@ const SVAInfographic: React.FC = () => {
     if (!question) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen">
-                <p className="mb-4">No questions available for this quiz.</p>
-                <button 
-                  onClick={() => setQuizMode(false)}
-                  className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
-                >
-                  Go Back
-                </button>
+                <p className="mb-4">No questions available.</p>
+                <button onClick={exitQuiz} className="px-4 py-2 bg-gray-200 rounded-lg">Go Back</button>
             </div>
         )
     }
@@ -117,10 +278,11 @@ const SVAInfographic: React.FC = () => {
         <div className="max-w-3xl mx-auto">
           <div className="flex justify-between items-center mb-8">
             <button
-              onClick={() => setQuizMode(false)}
-              className="px-4 py-2 bg-white rounded-full shadow-sm hover:shadow-md transition"
+              onClick={exitQuiz}
+               className="p-3 bg-white rounded-full shadow-sm hover:shadow-md transition-all text-gray-500 hover:text-violet-600 hover:bg-violet-50"
+               title="Exit Quiz"
             >
-              <ChevronLeftIcon />
+              <ChevronLeftIcon size={24}/>
             </button>
             <Mascot expression={mascotExpression} isCelebrating={isCorrect && celebrateMascot} />
             <div className="text-right">
@@ -192,7 +354,7 @@ const SVAInfographic: React.FC = () => {
                 onClick={handleNext}
                 className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg hover:shadow-lg font-bold transition-shadow duration-300"
               >
-                {currentQuestion < questions.length - 1 ? 'Next Question →' : 'Finish Quiz'}
+                {currentQuestion < questions.length - 1 ? 'Next Question →' : 'View Results'}
               </button>
             )}
           </div>
@@ -201,6 +363,7 @@ const SVAInfographic: React.FC = () => {
     );
   }
 
+  // --- VIEW: MAIN MENU / RULE SELECTION ---
   if (selectedRule === null) {
     return (
       <div className="min-h-screen p-4 md:p-8">
@@ -228,19 +391,19 @@ const SVAInfographic: React.FC = () => {
             <p className="text-gray-600 mb-4">Ready to test your overall knowledge? Choose a difficulty level to start a quiz with questions from all rules.</p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button
-                onClick={() => handleQuizStart(initialQuizQuestions.easy)}
+                onClick={() => initiateQuizConfig(initialQuizQuestions.easy)}
                 className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:-translate-y-0.5 transform"
               >
                 Easy 😊
               </button>
               <button
-                onClick={() => handleQuizStart(initialQuizQuestions.medium)}
+                onClick={() => initiateQuizConfig(initialQuizQuestions.medium)}
                 className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white hover:-translate-y-0.5 transform"
               >
                 Medium 🤔
               </button>
               <button
-                onClick={() => handleQuizStart(initialQuizQuestions.hard)}
+                onClick={() => initiateQuizConfig(initialQuizQuestions.hard)}
                 className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white hover:-translate-y-0.5 transform"
               >
                 Hard 🔥
@@ -298,6 +461,7 @@ const SVAInfographic: React.FC = () => {
     );
   }
   
+  // --- VIEW: RULE DETAILS ---
   const RuleInfographicComponent = InfoMap[selectedRule.id];
   const ruleQuizQuestions = ruleQuizzes[selectedRule.id];
 
@@ -352,7 +516,7 @@ const SVAInfographic: React.FC = () => {
                           <div key={index}>
                               <button
                                   onClick={() => setActiveExample(isActive ? null : index)}
-                                  className="w-full text-left flex items-start justify-between gap-3 p-4 bg-emerald-50 rounded-lg border-l-4 border-emerald-500 hover:bg-emerald-100 transition-colors cursor-pointer"
+                                  className="w-full text-left flex items-start justify-between gap-3 p-4 bg-emerald-5 rounded-lg border-l-4 border-emerald-500 hover:bg-emerald-100 transition-colors cursor-pointer"
                                   aria-expanded={isActive}
                                   aria-controls={`explanation-${index}`}
                               >
@@ -400,21 +564,21 @@ const SVAInfographic: React.FC = () => {
               <p className="text-amber-700 mb-4">Check your understanding of <span className="font-bold">{selectedRule.name}</span> by choosing a difficulty level.</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'easy'))}
+                  onClick={() => initiateQuizConfig(ruleQuizQuestions.filter(q => q.difficulty === 'easy'))}
                   className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:-translate-y-0.5 transform disabled:border-gray-300 disabled:text-gray-400 disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:transform-none disabled:shadow-none disabled:cursor-not-allowed"
                   disabled={!ruleQuizQuestions.some(q => q.difficulty === 'easy')}
                 >
                   Easy 😊
                 </button>
                 <button
-                  onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'medium'))}
+                  onClick={() => initiateQuizConfig(ruleQuizQuestions.filter(q => q.difficulty === 'medium'))}
                   className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white hover:-translate-y-0.5 transform disabled:border-gray-300 disabled:text-gray-400 disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:transform-none disabled:shadow-none disabled:cursor-not-allowed"
                   disabled={!ruleQuizQuestions.some(q => q.difficulty === 'medium')}
                 >
                   Medium 🤔
                 </button>
                 <button
-                  onClick={() => handleQuizStart(ruleQuizQuestions.filter(q => q.difficulty === 'hard'))}
+                  onClick={() => initiateQuizConfig(ruleQuizQuestions.filter(q => q.difficulty === 'hard'))}
                   className="flex-1 py-3 rounded-lg font-bold shadow-md transition-all duration-300 border-2 border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white hover:-translate-y-0.5 transform disabled:border-gray-300 disabled:text-gray-400 disabled:bg-gray-50 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:transform-none disabled:shadow-none disabled:cursor-not-allowed"
                   disabled={!ruleQuizQuestions.some(q => q.difficulty === 'hard')}
                 >
@@ -434,3 +598,4 @@ const SVAInfographic: React.FC = () => {
 };
 
 export default SVAInfographic;
+    
