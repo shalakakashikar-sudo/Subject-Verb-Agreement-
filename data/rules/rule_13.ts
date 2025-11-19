@@ -5,7 +5,7 @@ export const rule13: Rule = {
   id: 13,
   name: "Rule 13: Verbal Phrases and Gerunds",
   formula: "Gerund/Infinitive (as subject) ➜ Singular Verb",
-  explanation: "A gerund (verb + ing) or infinitive (to + verb) acting as a subject is treated as a singular noun.",
+  explanation: "When a verb form acts as the subject of a sentence, it is treated as a singular noun.\n\n1. Gerunds: Verbs ending in -ing (e.g., 'Swimming').\n2. Infinitives: Verbs preceded by to (e.g., 'To read').\n\nThe Rule: A single gerund or infinitive phrase takes a Singular Verb (e.g., 'Swimming is fun', 'To learn requires patience'). Note: If two verbal phrases are joined by 'and', the subject becomes plural.",
   examples: [
     {
       sentence: "Swimming is fun.",

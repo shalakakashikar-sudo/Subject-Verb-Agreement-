@@ -1,10 +1,11 @@
+
 import type { Rule } from '../../types.ts';
 
 export const rule2: Rule = {
   id: 2,
   name: "Rule 2: Primary Auxiliary Verbs (Be, Have, Do)",
   formula: "Subject ➜ Auxiliary Verb (matches number & person)",
-  explanation: "Primary helping verbs like is/are, has/have, and does/do must strictly agree with the subject in number and person.",
+  explanation: "Primary auxiliary verbs help form tenses, negatives, and questions. Unlike regular verbs, they change form significantly to match the subject.\n\n1. Be (am/is/are):\n   - Use 'am' for 'I'.\n   - Use 'is' for singular subjects (He, She, It).\n   - Use 'are' for plural subjects (We, They) and 'You'.\n\n2. Have (has/have):\n   - Use 'has' for singular subjects.\n   - Use 'have' for plural subjects, 'I', and 'You'.\n\n3. Do (does/do):\n   - Use 'does' for singular subjects.\n   - Use 'do' for plural subjects, 'I', and 'You'.",
   examples: [
     {
         sentence: "She is a talented musician.",

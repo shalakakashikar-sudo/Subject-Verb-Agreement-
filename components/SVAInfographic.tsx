@@ -2,19 +2,20 @@
 import React, { useState } from 'react';
 import type { Rule, QuizQuestion, Difficulty } from '../types.ts';
 import { ruleCategories, initialQuizQuestions, ruleQuizzes } from '../data/rules.ts';
-import { StarIcon, CheckCircleIcon, XCircleIcon, AwardIcon, ChevronLeftIcon, ChevronRightIcon } from './icons.tsx';
+import { StarIcon, CheckCircleIcon, XCircleIcon, AwardIcon, ChevronLeftIcon, ChevronRightIcon, BookIcon } from './icons.tsx';
 import Mascot from './Mascot.tsx';
 import { InfoMap } from './infographics/index.ts';
+import BeforeYouBegin from './BeforeYouBegin.tsx';
 
 // --- Utility for Randomization ---
-const shuffleArray = <T,>(array: T[]): T[] => {
+function shuffleArray<T>(array: T[]): T[] {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
   return newArray;
-};
+}
 
 // --- Utility for Stratified Sampling (Balanced Randomization) ---
 const getStratifiedQuestions = (allQuestions: QuizQuestion[], count: number): QuizQuestion[] => {
@@ -91,6 +92,7 @@ const FormulaDisplay: React.FC<{ formula: string; baseTextSize?: string }> = ({
 const SVAInfographic: React.FC = () => {
   const [selectedRule, setSelectedRule] = useState<Rule | null>(null);
   const [activeExample, setActiveExample] = useState<number | null>(null);
+  const [viewingBasics, setViewingBasics] = useState(false);
   
   // Quiz State
   const [quizMode, setQuizMode] = useState(false);
@@ -118,6 +120,9 @@ const SVAInfographic: React.FC = () => {
     const pool: QuizQuestion[] = [];
     
     Object.entries(ruleQuizzes).forEach(([idStr, questions]) => {
+        // Safety Check: Ensure questions is a valid array
+        if (!questions || !Array.isArray(questions)) return;
+
         const ruleId = parseInt(idStr);
         // Find rule name for the 'rule' property
         let ruleName = `Rule ${ruleId}`;
@@ -159,7 +164,7 @@ const SVAInfographic: React.FC = () => {
         selected = getStratifiedQuestions(pendingQuestions, count);
     } else {
         // Single Rule Mode: Simple Random Shuffle
-        const shuffled = shuffleArray(pendingQuestions);
+        const shuffled = shuffleArray<QuizQuestion>(pendingQuestions);
         selected = shuffled.slice(0, Math.min(count, shuffled.length));
     }
     
@@ -250,8 +255,8 @@ const SVAInfographic: React.FC = () => {
                 </button>
               )
             })}
-             {/* Only show 'All' if the available count isn't exactly one of the options */}
-             {!options.includes(availableCount) && (
+             {/* Only show 'All' if the available count isn't exactly one of the options AND isn't excessively large (e.g. > 60) */}
+             {!options.includes(availableCount) && availableCount <= 60 && (
                 <button
                     onClick={() => startQuiz(availableCount)}
                     className="col-span-2 py-3 rounded-xl font-bold transition-all duration-200 border-2 bg-gradient-to-r from-violet-500 to-purple-500 border-transparent text-white hover:shadow-lg hover:-translate-y-1"
@@ -275,7 +280,7 @@ const SVAInfographic: React.FC = () => {
   // --- VIEW: QUIZ SUMMARY ---
   if (showSummary) {
     const total = activeQuizQuestions.length;
-    const percentage = Math.round((score / total) * 100);
+    const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
     let message = "Good effort!";
     let expression: 'happy' | 'excited' | 'thinking' = 'thinking';
     
@@ -438,6 +443,11 @@ const SVAInfographic: React.FC = () => {
       </div>
     );
   }
+  
+  // --- VIEW: BEFORE YOU BEGIN ---
+  if (viewingBasics) {
+    return <BeforeYouBegin onBack={() => setViewingBasics(false)} />;
+  }
 
   // --- VIEW: MAIN MENU / RULE SELECTION ---
   if (selectedRule === null) {
@@ -459,7 +469,8 @@ const SVAInfographic: React.FC = () => {
             </p>
           </div>
 
-          <div className="mb-12 bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-xl border-t-4 border-violet-400">
+          {/* Mastery Challenge Card */}
+          <div className="mb-8 bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-xl border-t-4 border-violet-400">
             <div className="flex items-center gap-3 mb-4">
               <AwardIcon className="text-amber-500" size={32} />
               <h3 className="text-2xl font-bold text-gray-800 font-poppins">Mastery Challenge!</h3>
@@ -485,6 +496,25 @@ const SVAInfographic: React.FC = () => {
                 Hard 🔥
               </button>
             </div>
+          </div>
+
+          {/* Before You Begin Card */}
+          <div className="mb-12">
+             <button 
+                onClick={() => setViewingBasics(true)}
+                className="w-full group bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 text-left flex items-center justify-between"
+             >
+                <div className="flex items-center gap-4">
+                    <div className="p-3 bg-white/20 rounded-xl">
+                        <BookIcon className="text-white" size={32} />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-bold text-white font-poppins mb-1">Before You Begin: The Basics</h3>
+                        <p className="text-violet-100">Master the core principles and auxiliary verbs first.</p>
+                    </div>
+                </div>
+                <ChevronRightIcon className="text-white opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all" size={32} />
+             </button>
           </div>
 
           {ruleCategories.map((category, catIndex) => (

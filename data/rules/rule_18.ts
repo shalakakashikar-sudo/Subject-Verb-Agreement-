@@ -5,7 +5,7 @@ export const rule18: Rule = {
   id: 18,
   name: "Rule 18: The Subjunctive Mood",
   formula: "If / I wish + Subject ➜ were",
-  explanation: "Use 'were' instead of 'was' for singular subjects in hypothetical or contrary-to-fact situations.",
+  explanation: "The Subjunctive Mood is used to express wishes, hypothetical situations, or conditions that are contrary to fact. In these specific cases, standard subject-verb agreement rules change.\n\nThe Rule: For the verb 'to be', always use 'Were' for ALL subjects (I, You, He, She, It, We, They). Do not use 'was' in these hypothetical structures.\n\nExample: 'If I were you...' (I am not you) or 'I wish he were here.'",
   examples: [
     {
       sentence: "If I were you, I would accept.",

@@ -5,7 +5,7 @@ export const rule9: Rule = {
   id: 9,
   name: "Rule 9: Inverted Sentences (There/Here)",
   formula: "There/Here + Verb ... ➜ Verb agrees with Real Subject",
-  explanation: "In sentences starting with there or here, these words are never the subject. The verb agrees with the true subject that follows it.",
+  explanation: "In sentences beginning with 'Here' or 'There', the subject is placed after the verb. 'Here' and 'There' are adverbs of place and are never the subject.\n\nThe Rule: Look ahead after the verb to find the true subject, then make the verb agree with it.\n*   'There is a cat.' (Singular subject 'cat')\n*   'There are two cats.' (Plural subject 'cats')",
   examples: [
     {
       sentence: "There is a cat in the garden.",

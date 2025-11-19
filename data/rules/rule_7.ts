@@ -5,7 +5,7 @@ export const rule7: Rule = {
   id: 7,
   name: "Rule 7: Ignoring Intervening Phrases",
   formula: "Main Subject ... (phrase) ... ➜ Verb agrees with Main Subject",
-  explanation: "Phrases between the subject and verb (prepositional phrases, clarifying information) must be ignored. The verb agrees only with the main subject.",
+  explanation: "Often, a descriptive phrase comes between the subject and the verb. These phrases usually start with prepositions like 'of', 'in', 'with', or 'for'.\n\nThe Rule: The verb must agree with the Main Subject, not with the nouns inside the phrase.\n\nStrategy: Mentally cross out the intervening phrase to find the true subject.\nExample: 'The box (of chocolates) is empty.'",
   examples: [
     {
       sentence: "The box of chocolates is empty.",

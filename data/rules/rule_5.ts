@@ -1,10 +1,11 @@
+
 import type { Rule } from '../../types.ts';
 
 export const rule5: Rule = {
   id: 5,
   name: "Rule 5: Distributive Markers (Each/Every)",
   formula: "Each/Every + Subject(s) ➜ Singular Verb",
-  explanation: "The words each and every make the subject focus on individual units, requiring a singular verb even when multiple nouns are joined by AND.",
+  explanation: "The words 'Each' and 'Every' are strong singular markers. They focus on the individual members of a group one at a time, rather than the group as a whole.\n\nThe Rule: Whenever a subject begins with 'Each' or 'Every', the verb is always Singular. This applies even if the subject contains a list of multiple nouns (e.g., 'Every man, woman, and child is...').",
   examples: [
     {
         sentence: "Every man and woman is required to check in.",

@@ -4,11 +4,11 @@ import type { Rule } from '../../types.ts';
 export const rule15: Rule = {
   id: 15,
   name: "Rule 15: Nouns Plural in Form but Singular in Meaning",
-  formula: "Noun (news, physics...) ➜ Singular Verb",
-  explanation: "Certain nouns end in -s (news, mathematics, measles) but are singular in meaning and take singular verbs.",
+  formula: "Noun (Academic Subjects, Diseases, News) ➜ Singular Verb",
+  explanation: "Certain nouns end in the letter 's' but refer to a single thing, field of study, or concept. These nouns are grammatically Singular.\n\nCommon Examples:\n1. Academic Subjects: Mathematics, Physics, Economics, Civics, Linguistics, Statistics.\n2. Diseases: Measles, Mumps, Diabetes.\n3. Others: News, Billiards, Gymnastics, Politics.\n\nExample: 'The news is surprising.'",
   examples: [
     {
-      sentence: "The news is interesting today.",
+      sentence: "The news is on at six.",
       subject: "The news",
       verb: "is",
       reason: "'News' is always singular."

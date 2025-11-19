@@ -1,10 +1,11 @@
+
 import type { Rule } from '../../types.ts';
 
 export const rule4: Rule = {
   id: 4,
   name: "Rule 4: Compound Subjects Joined by AND",
   formula: "S1 + AND + S2 ➜ Plural Verb | Single Unit Concept ➜ Singular Verb",
-  explanation: "When AND connects two separate items, they form a plural subject. BUT if the two nouns refer to a single conceptual unit, fixed phrase, or the same person, the verb is singular.",
+  explanation: "When two or more subjects are connected by 'and', they usually form a plural subject because they refer to more than one thing. Therefore, they require a Plural Verb.\n\nThe Exception (Single Unit): If the two nouns combined represent a single idea, person, or dish, treat the subject as Singular. Common examples include 'Bread and butter', 'Fish and chips', or 'The owner and manager' (when referring to one person).",
   examples: [
     {
         sentence: "My mom and dad work late.",

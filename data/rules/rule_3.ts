@@ -1,10 +1,11 @@
+
 import type { Rule } from '../../types.ts';
 
 export const rule3: Rule = {
   id: 3,
   name: "Rule 3: Modal Auxiliary Verbs",
   formula: "Any Subject ➜ Modal (can, will...) + Base Verb",
-  explanation: "Modal verbs (can, must, should, will, might) never change their form based on the subject. They always use the base form of the main verb.",
+  explanation: "Modal verbs are special auxiliary verbs that express ability, possibility, permission, or obligation. They are unique because they never change form; they do not add -s, -ed, or -ing, regardless of the subject.\n\nCommon Modal Verbs:\nCan, Could, May, Might, Will, Would, Shall, Should, Must.\n\nThe Rule: Always follow a modal verb with the base form of the main verb (e.g., 'He can go', not 'He can goes').",
   examples: [
     {
         sentence: "She must schedule an appointment.",
