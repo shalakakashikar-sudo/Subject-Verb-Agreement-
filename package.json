@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://shalakakashikar-sudo.github.io/Subject-Verb-Agreement-/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

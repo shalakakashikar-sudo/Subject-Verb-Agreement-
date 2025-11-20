@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 // --- ICONS ---
@@ -162,48 +161,60 @@ const getColorFromClasses = (bgClass: string, borderClass: string) => {
   return 'blue'; // default
 };
 
-const colorStyles: Record<string, { bg: string; text: string; border: string; light: string; iconBg: string }> = {
+const colorStyles: Record<string, { bg: string; text: string; border: string; light: string; iconBg: string; gradient: string; boxBorder: string }> = {
   blue: { 
     bg: 'bg-blue-500', 
     text: 'text-blue-700', 
     border: 'border-blue-500', 
     light: 'bg-blue-50',
-    iconBg: 'bg-blue-100'
+    iconBg: 'bg-blue-100',
+    gradient: 'from-blue-500 to-cyan-500',
+    boxBorder: 'border-blue-200'
   },
   emerald: { 
     bg: 'bg-emerald-500', 
     text: 'text-emerald-700', 
     border: 'border-emerald-500', 
     light: 'bg-emerald-50',
-    iconBg: 'bg-emerald-100'
+    iconBg: 'bg-emerald-100',
+    gradient: 'from-emerald-500 to-teal-500',
+    boxBorder: 'border-emerald-200'
   },
   amber: { 
     bg: 'bg-amber-500', 
     text: 'text-amber-700', 
     border: 'border-amber-500', 
     light: 'bg-amber-50',
-    iconBg: 'bg-amber-100'
+    iconBg: 'bg-amber-100',
+    gradient: 'from-amber-400 to-orange-500',
+    boxBorder: 'border-amber-200'
   },
   rose: { 
     bg: 'bg-rose-500', 
     text: 'text-rose-700', 
     border: 'border-rose-500', 
     light: 'bg-rose-50',
-    iconBg: 'bg-rose-100'
+    iconBg: 'bg-rose-100',
+    gradient: 'from-rose-500 to-pink-500',
+    boxBorder: 'border-rose-200'
   },
   slate: { 
     bg: 'bg-slate-600', 
     text: 'text-slate-700', 
     border: 'border-slate-500', 
     light: 'bg-slate-50',
-    iconBg: 'bg-slate-200'
+    iconBg: 'bg-slate-200',
+    gradient: 'from-slate-500 to-gray-600',
+    boxBorder: 'border-slate-200'
   },
   violet: { 
     bg: 'bg-violet-500', 
     text: 'text-violet-700', 
     border: 'border-violet-500', 
     light: 'bg-violet-50',
-    iconBg: 'bg-violet-100'
+    iconBg: 'bg-violet-100',
+    gradient: 'from-violet-500 to-purple-600',
+    boxBorder: 'border-violet-200'
   },
 };
 
@@ -211,14 +222,16 @@ const colorStyles: Record<string, { bg: string; text: string; border: string; li
 
 export const InfographicContainer: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
     <div className="my-10">
-      <div className="relative mb-8">
+      <div className="relative mb-10">
           <div className="absolute inset-0 flex items-center" aria-hidden="true">
-              <div className="w-full border-t border-gray-200"></div>
+              <div className="w-full border-t-2 border-gray-100"></div>
           </div>
           <div className="relative flex justify-center">
-              <span className="bg-white px-4 text-lg md:text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600 tracking-wide font-poppins uppercase shadow-sm rounded-full">
-                  {title}
-              </span>
+              <div className="bg-white px-6 py-2 rounded-full shadow-md border border-gray-100">
+                <span className="text-lg md:text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600 tracking-wide font-poppins uppercase">
+                    {title}
+                </span>
+              </div>
           </div>
       </div>
       <div className="grid md:grid-cols-2 gap-6 items-start">
@@ -232,17 +245,17 @@ export const InfoCard: React.FC<{ bgColor: string; borderColor: string; title: s
     const theme = colorStyles[colorKey] || colorStyles.blue;
 
     return (
-        <div className={`group relative flex flex-col h-full bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)] transition-all duration-300 overflow-hidden border-t-4 ${theme.border}`}>
+        <div className={`group relative flex flex-col h-full bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 overflow-hidden border-t-[6px] ${theme.border} hover:-translate-y-1`}>
              {/* Decorative top pattern */}
-            <div className={`absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 rounded-full opacity-10 ${theme.bg}`}></div>
+            <div className={`absolute top-0 right-0 w-32 h-32 -mr-10 -mt-10 rounded-full opacity-[0.08] bg-gradient-to-br ${theme.gradient}`}></div>
             
-            <div className="p-6 flex-1 flex flex-col items-center">
-                <div className={`mb-4 p-4 rounded-full ${theme.iconBg} ${theme.text} shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+            <div className="p-8 flex-1 flex flex-col items-center">
+                <div className={`mb-5 p-4 rounded-full ${theme.iconBg} ${theme.text} shadow-sm group-hover:scale-110 transition-transform duration-500 ring-4 ring-white`}>
                     {icon}
                 </div>
-                <h4 className="text-xl font-bold text-gray-800 font-poppins text-center mb-1">{title}</h4>
-                <p className="text-sm text-gray-500 font-medium text-center mb-6 uppercase tracking-wide">{subtitle}</p>
-                <div className="w-full flex-1 flex flex-col items-center">
+                <h4 className="text-2xl font-bold text-gray-800 font-poppins text-center mb-1">{title}</h4>
+                <p className="text-sm text-gray-500 font-semibold text-center mb-8 uppercase tracking-wider bg-gray-50 px-3 py-1 rounded-full">{subtitle}</p>
+                <div className="w-full flex-1 flex flex-col items-center space-y-2">
                     {children}
                 </div>
             </div>
@@ -251,7 +264,6 @@ export const InfoCard: React.FC<{ bgColor: string; borderColor: string; title: s
 };
 
 export const Arrow = ({ color = 'blue' }) => {
-   // Map simple color names to tailwind classes for text-color
    const colorMap: Record<string, string> = {
        blue: 'text-blue-400',
        emerald: 'text-emerald-400',
@@ -264,7 +276,7 @@ export const Arrow = ({ color = 'blue' }) => {
 
    return (
     <div className={`my-4 ${textColor} animate-bounce`}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 5v14M19 12l-7 7-7-7"/>
         </svg>
     </div>
@@ -276,11 +288,11 @@ export const VerbBox: React.FC<{ text: string; color: string }> = ({ text, color
     const theme = colorStyles[colorKey] || colorStyles.blue;
     
     return (
-        <div className={`w-full ${theme.light} p-4 rounded-xl border-2 ${theme.border} border-opacity-20 shadow-sm text-center relative overflow-hidden`}>
+        <div className={`w-full bg-gradient-to-br ${theme.light} to-white p-5 rounded-xl border ${theme.boxBorder} shadow-sm text-center relative overflow-hidden group hover:shadow-md transition-all duration-300`}>
              {/* Background stripe for style */}
-            <div className={`absolute top-0 left-0 h-full w-1 ${theme.bg} opacity-50`}></div>
-            <span className="block text-[10px] font-bold uppercase text-gray-400 tracking-widest mb-1">Requires</span>
-            <p className={`font-mono text-lg md:text-xl font-bold ${theme.text}`}>{text}</p>
+            <div className={`absolute top-0 left-0 h-full w-1.5 bg-gradient-to-b ${theme.gradient}`}></div>
+            <span className="block text-[10px] font-extrabold uppercase text-gray-400 tracking-[0.2em] mb-1.5">REQUIRES</span>
+            <p className={`font-mono text-lg md:text-xl font-black ${theme.text}`}>{text}</p>
         </div>
     );
 };
@@ -290,10 +302,10 @@ export const ExampleBox: React.FC<{ text: React.ReactNode; color: string }> = ({
     const theme = colorStyles[colorKey] || colorStyles.blue;
 
     return (
-        <div className="mt-5 w-full bg-gray-50 p-4 rounded-xl border border-gray-200 relative">
-            <div className={`absolute top-4 left-0 w-1 h-8 rounded-r ${theme.bg}`}></div>
-            <p className="text-xs font-bold text-gray-400 uppercase mb-1 ml-2">Example</p>
-            <p className="text-gray-700 font-medium text-lg leading-snug ml-2">{text}</p>
+        <div className="mt-6 w-full bg-gray-50 p-5 rounded-xl border border-gray-100 relative group hover:bg-white hover:shadow-md transition-all duration-300">
+            <div className={`absolute top-4 left-0 w-1 h-8 rounded-r bg-gradient-to-b ${theme.gradient}`}></div>
+            <p className="text-xs font-bold text-gray-400 uppercase mb-1 ml-3 tracking-wide">Example</p>
+            <p className="text-gray-700 font-medium text-lg leading-relaxed ml-3">{text}</p>
         </div>
     );
 };
